@@ -1,22 +1,30 @@
 package br.edu.jogoDaVelha.controls;
 
-import br.edu.jogoDaVelha.models.Jogador;
-
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Controle {
 
+    private String[][] velha = new String[3][3];
+    private boolean x = true; // o = false
+
     public Controle() {}
 
-    /*
-    public Jogador criarJogador() {
-        String nome = JOptionPane.showInputDialog(null, "Digite o nome do jogador:");
-
-        String simbolo = "";
-        while (!simbolo.equals("X") || !simbolo.equals("O")) {
-            simbolo = JOptionPane.showInputDialog(null, "Digite o simbolo do jogador (apenas X ou O):\nCaso não digite apenas o caracter, essa janela aparecerá novamente!");
+    public String marcar() {
+        if (x == true) {
+            return "O";
+        } else {
+            return "X";
         }
-        return new Jogador(nome, simbolo);
     }
-    */
+
+    public void mudarJogador(String nomeJogadorX, String nomeJogadorO) {
+        if (x == true) {
+            JOptionPane.showMessageDialog(null, "Vez do: " + nomeJogadorO);
+            x = false; // o
+        } else {
+            JOptionPane.showMessageDialog(null, "Vez do: " + nomeJogadorX);
+            x = true;
+        }
+    }
 }
