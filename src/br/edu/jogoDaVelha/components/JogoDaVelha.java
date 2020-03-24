@@ -105,11 +105,12 @@ public class JogoDaVelha extends JFrame{
     }
 
     private void listeners() {
+        controle.mostarPrimeiroJogador(nomeJogadorX, nomeJogadorO);
 
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controle.mudarJogador(nomeJogadorX, nomeJogadorO);
-                button1.setText(controle.marcar());
+                button1.setText(controle.marcar(1));
                 button1.setEnabled(false);
             }
         });
@@ -117,7 +118,7 @@ public class JogoDaVelha extends JFrame{
         button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controle.mudarJogador(nomeJogadorX, nomeJogadorO);
-                button2.setText(controle.marcar());
+                button2.setText(controle.marcar(2));
                 button2.setEnabled(false);
             }
         });
@@ -125,7 +126,7 @@ public class JogoDaVelha extends JFrame{
         button3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controle.mudarJogador(nomeJogadorX, nomeJogadorO);
-                button3.setText(controle.marcar());
+                button3.setText(controle.marcar(3));
                 button3.setEnabled(false);
             }
         });
@@ -133,7 +134,7 @@ public class JogoDaVelha extends JFrame{
         button4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controle.mudarJogador(nomeJogadorX, nomeJogadorO);
-                button4.setText(controle.marcar());
+                button4.setText(controle.marcar(4));
                 button4.setEnabled(false);
             }
         });
@@ -141,7 +142,7 @@ public class JogoDaVelha extends JFrame{
         button5.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controle.mudarJogador(nomeJogadorX, nomeJogadorO);
-                button5.setText(controle.marcar());
+                button5.setText(controle.marcar(5));
                 button5.setEnabled(false);
             }
         });
@@ -149,7 +150,7 @@ public class JogoDaVelha extends JFrame{
         button6.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controle.mudarJogador(nomeJogadorX, nomeJogadorO);
-                button6.setText(controle.marcar());
+                button6.setText(controle.marcar(6));
                 button6.setEnabled(false);
             }
         });
@@ -157,7 +158,7 @@ public class JogoDaVelha extends JFrame{
         button7.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controle.mudarJogador(nomeJogadorX, nomeJogadorO);
-                button7.setText(controle.marcar());
+                button7.setText(controle.marcar(7));
                 button7.setEnabled(false);
             }
         });
@@ -165,7 +166,7 @@ public class JogoDaVelha extends JFrame{
         button8.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controle.mudarJogador(nomeJogadorX, nomeJogadorO);
-                button8.setText(controle.marcar());
+                button8.setText(controle.marcar(8));
                 button8.setEnabled(false);
             }
         });
@@ -173,7 +174,7 @@ public class JogoDaVelha extends JFrame{
         button9.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controle.mudarJogador(nomeJogadorX, nomeJogadorO);
-                button9.setText(controle.marcar());
+                button9.setText(controle.marcar(9));
                 button9.setEnabled(false);
             }
         });
@@ -227,5 +228,7 @@ public class JogoDaVelha extends JFrame{
 
         button9.setText("");
         button9.setEnabled(true);
+
+        controle.mostarPrimeiroJogador(nomeJogadorX, nomeJogadorO);
     }
 }
