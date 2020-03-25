@@ -27,12 +27,14 @@ public class JogoDaVelha extends JFrame{
     private JLabel labelNomeO;
     private JLabel labelNomeX;
 
-    private Controle controle = new Controle();
+    private Controle controle;
     private String nomeJogadorX, nomeJogadorO;
 
     public JogoDaVelha(String nomeJogadorX, String nomeJogadorO) {
         this.nomeJogadorO = nomeJogadorO;
         this.nomeJogadorX = nomeJogadorX;
+
+        controle = new Controle(nomeJogadorX, nomeJogadorO);
         inicializarComponents();
         listeners();
     }
@@ -98,84 +100,93 @@ public class JogoDaVelha extends JFrame{
         button9 = new JButton("");
         jogodavelha.add(button9);
 
-        setSize(400, 300);
+        setSize(300, 300);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
     private void listeners() {
-        controle.mostarPrimeiroJogador(nomeJogadorX, nomeJogadorO);
+        controle.mostarJogadorDaVez();
 
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controle.mudarJogador(nomeJogadorX, nomeJogadorO);
+                verificarSeOjogoAcabou();
                 button1.setText(controle.marcar(1));
                 button1.setEnabled(false);
+                controle.mudarJogador();
             }
         });
 
         button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controle.mudarJogador(nomeJogadorX, nomeJogadorO);
+                verificarSeOjogoAcabou();
                 button2.setText(controle.marcar(2));
                 button2.setEnabled(false);
+                controle.mudarJogador();
             }
         });
 
         button3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controle.mudarJogador(nomeJogadorX, nomeJogadorO);
+                verificarSeOjogoAcabou();
                 button3.setText(controle.marcar(3));
                 button3.setEnabled(false);
+                controle.mudarJogador();
             }
         });
 
         button4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controle.mudarJogador(nomeJogadorX, nomeJogadorO);
+                verificarSeOjogoAcabou();
                 button4.setText(controle.marcar(4));
                 button4.setEnabled(false);
+                controle.mudarJogador();
             }
         });
 
         button5.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controle.mudarJogador(nomeJogadorX, nomeJogadorO);
+                verificarSeOjogoAcabou();
                 button5.setText(controle.marcar(5));
                 button5.setEnabled(false);
+                controle.mudarJogador();
             }
         });
 
         button6.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controle.mudarJogador(nomeJogadorX, nomeJogadorO);
+                verificarSeOjogoAcabou();
                 button6.setText(controle.marcar(6));
                 button6.setEnabled(false);
+                controle.mudarJogador();
             }
         });
 
         button7.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controle.mudarJogador(nomeJogadorX, nomeJogadorO);
+                verificarSeOjogoAcabou();
                 button7.setText(controle.marcar(7));
                 button7.setEnabled(false);
+                controle.mudarJogador();
             }
         });
 
         button8.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controle.mudarJogador(nomeJogadorX, nomeJogadorO);
+                verificarSeOjogoAcabou();
                 button8.setText(controle.marcar(8));
                 button8.setEnabled(false);
+                controle.mudarJogador();
             }
         });
 
         button9.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                controle.mudarJogador(nomeJogadorX, nomeJogadorO);
+                verificarSeOjogoAcabou();
                 button9.setText(controle.marcar(9));
                 button9.setEnabled(false);
+                controle.mudarJogador();
             }
         });
 
@@ -192,6 +203,19 @@ public class JogoDaVelha extends JFrame{
         });
     }
 
+    private void verificarSeOjogoAcabou() {
+        if (controle.terminouOjogo()) {
+            button1.setEnabled(false);
+            button2.setEnabled(false);
+            button3.setEnabled(false);
+            button4.setEnabled(false);
+            button5.setEnabled(false);
+            button6.setEnabled(false);
+            button7.setEnabled(false);
+            button8.setEnabled(false);
+            button9.setEnabled(false);
+        }
+    }
 
     private void reiniciar() {
         String nomeJogadorX = "Jogador X: ";
@@ -229,6 +253,6 @@ public class JogoDaVelha extends JFrame{
         button9.setText("");
         button9.setEnabled(true);
 
-        controle.mostarPrimeiroJogador(nomeJogadorX, nomeJogadorO);
+        controle.mostarJogadorDaVez();
     }
 }

@@ -7,8 +7,13 @@ public class Controle {
 
     private String[][] velha = new String[3][3];
     private boolean x = true; // o = false
+    String nomeJogadorX = "", nomeJogadorO = "";
+    private boolean terminouOjogo = false;
 
-    public Controle() {
+    public Controle(String nomeJogadorX, String nomeJogadorO) {
+        this.nomeJogadorO = nomeJogadorO;
+        this.nomeJogadorX = nomeJogadorX;
+
         // inicializa o vetor de velha
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -18,25 +23,39 @@ public class Controle {
     }
 
     public String marcar(int botao) {
-        if (x == true) {
-            gravarJogada(botao, "O");
-            return "O";
-        } else {
+        if (x) {
+            encontrarVencedor("X");
             gravarJogada(botao, "X");
             return "X";
+        } else {
+            encontrarVencedor("O");
+            gravarJogada(botao, "O");
+            return "O";
         }
     }
 
-    public void mostarPrimeiroJogador(String nomeJogadorX, String nomeJogadorO) {
-        if (x == true) {
+    public boolean terminouOjogo() {
+        return terminouOjogo;
+    }
+
+    public void mostarJogadorDaVez() {
+        if (x) {
             JOptionPane.showMessageDialog(null, "Vez do: " + nomeJogadorX);
         } else {
             JOptionPane.showMessageDialog(null, "Vez do: " + nomeJogadorO);
         }
     }
 
-    public void mudarJogador(String nomeJogadorX, String nomeJogadorO) {
-        if (x == true) {
+    private String getJogadorDaVez() {
+        if (x) {
+            return nomeJogadorX;
+        } else {
+            return nomeJogadorO;
+        }
+    }
+
+    public void mudarJogador() {
+        if (x) {
             JOptionPane.showMessageDialog(null, "Vez do: " + nomeJogadorO);
             x = false; // o
         } else {
@@ -78,8 +97,46 @@ public class Controle {
         }
     }
 
-    private void encontrarVencedor() {
+    private void encontrarVencedor(String simbolo) {
+        String jogadorDaVez = getJogadorDaVez();
 
+        // Linhas
+        if (velha[0][0].equals(simbolo) && velha[0][1].equals(simbolo) && velha[0][2].equals(simbolo)) {
+            JOptionPane.showMessageDialog(null, "O vencedor é o " + jogadorDaVez);
+            terminouOjogo = true;
+        }
+        if (velha[1][0].equals(simbolo) && velha[1][1].equals(simbolo) && velha[1][2].equals(simbolo)) {
+            JOptionPane.showMessageDialog(null, "O vencedor é o " + jogadorDaVez);
+            terminouOjogo = true;
+        }
+        if (velha[2][0].equals(simbolo) && velha[2][1].equals(simbolo) && velha[2][2].equals(simbolo)) {
+            JOptionPane.showMessageDialog(null, "O vencedor é o " + jogadorDaVez);
+            terminouOjogo = true;
+        }
+
+        // Colunas
+        if (velha[0][0].equals(simbolo) && velha[1][0].equals(simbolo) && velha[2][0].equals(simbolo)) {
+            JOptionPane.showMessageDialog(null, "O vencedor é o " + jogadorDaVez);
+            terminouOjogo = true;
+        }
+        if (velha[0][1].equals(simbolo) && velha[1][1].equals(simbolo) && velha[2][1].equals(simbolo)) {
+            JOptionPane.showMessageDialog(null, "O vencedor é o " + jogadorDaVez);
+            terminouOjogo = true;
+        }
+        if (velha[0][2].equals(simbolo) && velha[1][2].equals(simbolo) && velha[2][2].equals(simbolo)) {
+            JOptionPane.showMessageDialog(null, "O vencedor é o " + jogadorDaVez);
+            terminouOjogo = true;
+        }
+
+        // Diagonais
+        if (velha[0][0].equals(simbolo) && velha[1][1].equals(simbolo) && velha[2][2].equals(simbolo)) {
+            JOptionPane.showMessageDialog(null, "O vencedor é o " + jogadorDaVez);
+            terminouOjogo = true;
+        }
+        if (velha[0][2].equals(simbolo) && velha[1][1].equals(simbolo) && velha[2][0].equals(simbolo)) {
+            JOptionPane.showMessageDialog(null, "O vencedor é o " + jogadorDaVez);
+            terminouOjogo = true;
+        }
     }
 
     private void mostrarVetor() {
