@@ -24,12 +24,12 @@ public class Controle {
 
     public String marcar(int botao) {
         if (x) {
-            encontrarVencedor("X");
             gravarJogada(botao, "X");
+            encontrarVencedor("X");
             return "X";
         } else {
-            encontrarVencedor("O");
             gravarJogada(botao, "O");
+            encontrarVencedor("O");
             return "O";
         }
     }
