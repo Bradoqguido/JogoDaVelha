@@ -26,10 +26,12 @@ public class Controle {
         if (x) {
             gravarJogada(botao, "X");
             encontrarVencedor("X");
+            verificarEmpate();
             return "X";
         } else {
             gravarJogada(botao, "O");
             encontrarVencedor("O");
+            verificarEmpate();
             return "O";
         }
     }
@@ -139,14 +141,18 @@ public class Controle {
         }
     }
 
-    private void mostrarVetor() {
-        StringBuilder aux = new StringBuilder();
+    private void verificarEmpate() {
+        int casasPreenchidas = 0;
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                aux.append(velha[i][j]).append("|");
+                if (!velha[i][j].equals("")) {
+                    casasPreenchidas++;
+                }
             }
-            aux.append("\n");
         }
-        JOptionPane.showMessageDialog(null, aux);
+        if (casasPreenchidas == 9) {
+            JOptionPane.showMessageDialog(null, "Houve um empate!");
+            terminouOjogo = true;
+        }
     }
 }

@@ -27,17 +27,17 @@ public class JogoDaVelha extends JFrame{
     private JButton sairButton;
     private JLabel labelNomeO;
     private JLabel labelNomeX;
+    private JTextField textFieldNomeO;
+    private JTextField textFieldNomeX;
+    private JButton playButton;
 
     private Controle controle;
-    private String nomeJogadorX, nomeJogadorO;
+    private String nomeJogadorX = "X", nomeJogadorO = "O";
 
-    public JogoDaVelha(String nomeJogadorX, String nomeJogadorO) {
-        this.nomeJogadorO = nomeJogadorO;
-        this.nomeJogadorX = nomeJogadorX;
-
-        controle = new Controle(nomeJogadorX, nomeJogadorO);
+    public JogoDaVelha() {
         inicializarComponents();
         listeners();
+        desabilitarBotoesJogoVelha();
     }
 
     private void inicializarComponents() {
@@ -50,23 +50,34 @@ public class JogoDaVelha extends JFrame{
         jogadores.setLayout(new BorderLayout(0,0));
 
         northJpanel = new JPanel();
+
         reiniciarButton = new JButton("Reiniciar");
         northJpanel.add(reiniciarButton);
 
+        playButton = new JButton("Iniciar Jogo");
+        northJpanel.add(playButton);
+
         sairButton = new JButton("Sair");
         northJpanel.add(sairButton);
+
         jogadores.add(northJpanel, BorderLayout.NORTH);
 
         centerJpanel = new JPanel();
         centerJpanel.setBorder(new TitledBorder(null, "Jogador X", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-        labelNomeX = new JLabel(nomeJogadorX);
-        centerJpanel.add(labelNomeX);
+
+        textFieldNomeX = new JTextField(nomeJogadorX);
+        textFieldNomeX.setColumns(10);
+        centerJpanel.add(textFieldNomeX);
+
         jogadores.add(centerJpanel, BorderLayout.CENTER);
 
         southJpanel = new JPanel();
         southJpanel.setBorder(new TitledBorder(null, "Jogador O", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-        labelNomeO = new JLabel(nomeJogadorO);
-        southJpanel.add(labelNomeO);
+
+        textFieldNomeO = new JTextField(nomeJogadorO);
+        textFieldNomeO.setColumns(10);
+        southJpanel.add(textFieldNomeO);
+
         jogadores.add(southJpanel, BorderLayout.SOUTH);
 
         /// Declarações Jogo da Velha ///
@@ -109,7 +120,6 @@ public class JogoDaVelha extends JFrame{
     }
 
     private void listeners() {
-        controle.mostarJogadorDaVez();
 
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -186,6 +196,18 @@ public class JogoDaVelha extends JFrame{
         reiniciarButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 reiniciar();
+                controle.mostarJogadorDaVez();
+            }
+        });
+
+        playButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                nomeJogadorX = textFieldNomeX.getText();
+                nomeJogadorO = textFieldNomeO.getText();
+                controle = new Controle(nomeJogadorX, nomeJogadorO);
+                reiniciar();
+                controle.mostarJogadorDaVez();
+                habilitarBotoesJogoVelha();
             }
         });
 
@@ -196,7 +218,7 @@ public class JogoDaVelha extends JFrame{
         });
     }
 
-    private void terminarJogo() {
+    private void desabilitarBotoesJogoVelha() {
         button1.setEnabled(false);
         button2.setEnabled(false);
         button3.setEnabled(false);
@@ -206,24 +228,37 @@ public class JogoDaVelha extends JFrame{
         button7.setEnabled(false);
         button8.setEnabled(false);
         button9.setEnabled(false);
+        playButton.setEnabled(true);
+        reiniciarButton.setEnabled(false);
+        textFieldNomeX.setEditable(true);
+        textFieldNomeO.setEditable(true);
+    }
+
+    private void habilitarBotoesJogoVelha() {
+        button1.setEnabled(true);
+        button2.setEnabled(true);
+        button3.setEnabled(true);
+        button4.setEnabled(true);
+        button5.setEnabled(true);
+        button6.setEnabled(true);
+        button7.setEnabled(true);
+        button8.setEnabled(true);
+        button9.setEnabled(true);
+        playButton.setEnabled(false);
+        reiniciarButton.setEnabled(true);
+        textFieldNomeX.setEditable(false);
+        textFieldNomeO.setEditable(false);
     }
 
     private void mudarJogadorSeNaoTerminouOjogo() {
         if (controle.terminouOjogo()) {
-            terminarJogo();
+            desabilitarBotoesJogoVelha();
         } else {
             controle.mudarJogador();
         }
     }
 
     private void reiniciar() {
-        String nomeJogadorX = "Jogador X: ";
-        nomeJogadorX += JOptionPane.showInputDialog(null, "Digite o nome do jogador X:");
-        labelNomeX.setText(nomeJogadorX);
-
-        String nomeJogadorO = "Jogador O: ";
-        nomeJogadorO += JOptionPane.showInputDialog(null, "Digite o nome do jogador O:");
-        labelNomeO.setText(nomeJogadorO);
 
         button1.setText("");
         button1.setEnabled(true);
@@ -251,7 +286,5 @@ public class JogoDaVelha extends JFrame{
 
         button9.setText("");
         button9.setEnabled(true);
-
-        controle.mostarJogadorDaVez();
     }
 }

@@ -98,10 +98,14 @@
             <border type="none"/>
             <children>
               <component id="57c5f" class="javax.swing.JLabel" binding="labelNomeO">
-                <constraints border-constraint="Center"/>
+                <constraints border-constraint="West"/>
                 <properties>
                   <text value="Jogador O"/>
                 </properties>
+              </component>
+              <component id="73009" class="javax.swing.JTextField" binding="textFieldNomeO">
+                <constraints border-constraint="Center"/>
+                <properties/>
               </component>
             </children>
           </grid>
@@ -122,6 +126,12 @@
                   <text value="Sair"/>
                 </properties>
               </component>
+              <component id="958ad" class="javax.swing.JButton" binding="playButton">
+                <constraints border-constraint="Center"/>
+                <properties>
+                  <text value="Iniciar jogo"/>
+                </properties>
+              </component>
             </children>
           </grid>
           <grid id="600b5" binding="centerJpanel" layout-manager="BorderLayout" hgap="0" vgap="0">
@@ -130,10 +140,14 @@
             <border type="none"/>
             <children>
               <component id="a3be9" class="javax.swing.JLabel" binding="labelNomeX">
-                <constraints border-constraint="Center"/>
+                <constraints border-constraint="West"/>
                 <properties>
                   <text value="Jogador X"/>
                 </properties>
+              </component>
+              <component id="a8ae6" class="javax.swing.JTextField" binding="textFieldNomeX">
+                <constraints border-constraint="Center"/>
+                <properties/>
               </component>
             </children>
           </grid>
